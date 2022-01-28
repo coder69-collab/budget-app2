@@ -19,7 +19,7 @@ export default function ExpenseComponent({ show, setShow }) {
   const [amount, setAmount] = useState(0);
   const [selectValue, setSelectValue] = useState("");
 
-  const [state, dispatch] = useContext(context);
+  const [dispatch] = useContext(context);
 
   const handleClose = () => setShow(false);
 
@@ -36,7 +36,6 @@ export default function ExpenseComponent({ show, setShow }) {
 
     setDescription("");
     setAmount(0);
-    console.log(state);
   }
 
   return (
