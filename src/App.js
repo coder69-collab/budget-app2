@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useEffect } from "react";
+import React, { useReducer } from "react";
 //import "react-bootstrap/dist/react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -9,7 +9,6 @@ import BudgetContext from "./Context";
 
 // my components
 
-import Cart from "./components/Cart";
 import CardHeader from "./components/Cart-header";
 import RenderCart from "./components/RenderCart";
 
@@ -70,51 +69,7 @@ function budgetReducer(state, action) {
 }
 
 function App() {
-  const initialState = [
-    /* {
-      id: 1,
-      name: "Groceries",
-      maximumSpending: 1000,
-      currentSpending: 10,
-      expenses: [{ description: "", amount: 0, expenseCategory: "" }],
-    },
-    {
-      id: 2,
-      name: "Groceries",
-      maximumSpending: 1000,
-      currentSpending: 10,
-      expenses: [{ description: "", amount: 0, expenseCategory: "" }],
-    },
-    {
-      id: 3,
-      name: "Groceries",
-      maximumSpending: 1000,
-      currentSpending: 10,
-      expenses: [{ description: "", amount: 0, expenseCategory: "" }],
-    },
-    {
-      id: 4,
-      name: "Groceries",
-      maximumSpending: 1000,
-      currentSpending: 10,
-      expenses: [{ description: "", amount: 0, expenseCategory: "" }],
-    },
-    {
-      id: 5,
-      name: "uncategorized",
-      maximumSpending: 1000,
-      currentSpending: 10,
-      expenses: [{ description: "", amount: 0, expenseCategory: "" }],
-    },
-
-    {
-      id: 6,
-      name: "Groceries",
-      maximumSpending: 1000,
-      currentSpending: 10,
-      expenses: [{ description: "", amount: 0, expenseCategory: "" }],
-    },*/
-  ];
+  const initialState = [];
 
   const [state, dispatch] = useReducer(budgetReducer, initialState);
 
