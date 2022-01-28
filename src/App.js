@@ -1,8 +1,6 @@
 import React, { useReducer } from "react";
-//import "react-bootstrap/dist/react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
 
 // import context and dispatch
 import BudgetContext from "./Context";
@@ -83,9 +81,7 @@ function App() {
         <Container>
           <Row>
             {" "}
-            <Col md={5} lg={6}>
-              <RenderCart />
-            </Col>
+            <RenderCart />
           </Row>
         </Container>
       </BudgetContext.Provider>
