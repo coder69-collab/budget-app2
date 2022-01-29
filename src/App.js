@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
@@ -19,6 +19,9 @@ function budgetReducer(state, action) {
       if (verifyIfBudgetAlreadyExist) return state;
 
       const newState = state.concat([action.value]);
+
+      localStorage.setItem("state", JSON.stringify(newState));
+
       return newState;
 
     case "addExpense":
@@ -35,6 +38,8 @@ function budgetReducer(state, action) {
         return budget;
       });
 
+      localStorage.setItem("state", JSON.stringify(newStateBudget));
+
       return newStateBudget;
 
     case "deleteExpenseRecord":
@@ -49,6 +54,8 @@ function budgetReducer(state, action) {
         return budget;
       });
 
+      localStorage.setItem("state", JSON.stringify(filteredList));
+
       return filteredList;
 
     case "deleteBudgetAllRecord":
@@ -60,7 +67,24 @@ function budgetReducer(state, action) {
 
         return budget;
       });
+
+      localStorage.setItem("state", JSON.stringify(updatedList));
+
       return updatedList;
+
+    case "initialState":
+      const persistedData = [...JSON.parse(localStorage.getItem("state"))];
+      return persistedData;
+
+    case "deleteBudget":
+      const filteredNewState = state.filter(
+        (budget) => budget.name !== action.value.name
+      );
+
+      localStorage.setItem("state", JSON.stringify(filteredNewState));
+
+      return filteredNewState;
+
     default:
       throw new Error("invalid");
   }
@@ -70,6 +94,10 @@ function App() {
   const initialState = [];
 
   const [state, dispatch] = useReducer(budgetReducer, initialState);
+
+  useEffect(() => {
+    dispatch({ type: "initialState" });
+  }, []);
 
   return (
     <>

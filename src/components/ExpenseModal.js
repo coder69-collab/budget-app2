@@ -19,7 +19,7 @@ export default function ExpenseComponent({ show, setShow }) {
   const [amount, setAmount] = useState(0);
   const [selectValue, setSelectValue] = useState("");
 
-  const [dispatch] = useContext(context);
+  const [state, dispatch] = useContext(context);
 
   const handleClose = () => setShow(false);
 

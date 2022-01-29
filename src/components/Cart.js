@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import Card from "react-bootstrap/Card";
@@ -7,12 +7,15 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import ViewExpenses from "./ViewExpenses";
 
 import ExpenseComponent from "./ExpenseModalCart";
+import context from "../Context";
 
 const Cart = ({ name, currentSpending, maximumSpending }) => {
   const [showExpenses, setShowExpenses] = useState(false);
   const [showAddExpense, setShowAddExpense] = useState(false);
   const [expensePercentage, setExpensePercentage] = useState(0);
   const [expensePercentageColor, setExpensePercentageColor] = useState("");
+
+  const [state, dispatch] = useContext(context);
 
   const handleShowExpenses = () => setShowExpenses(true);
   const handleShowAddExpenses = () => setShowAddExpense(true);
@@ -53,11 +56,28 @@ const Cart = ({ name, currentSpending, maximumSpending }) => {
           </div>
 
           <Stack direction="horizontal" gap={2}>
-            <Button variant="outline-primary" onClick={handleShowAddExpenses}>
+            <Button
+              variant="outline-primary"
+              onClick={handleShowAddExpenses}
+              size="sm"
+            >
               Add Expense
             </Button>
-            <Button variant="outline-primary" onClick={handleShowExpenses}>
+            <Button
+              variant="outline-primary"
+              onClick={handleShowExpenses}
+              size="sm"
+            >
               View Expenses
+            </Button>
+            <Button
+              variant="outline-danger"
+              onClick={() =>
+                dispatch({ type: "deleteBudget", value: { name } })
+              }
+              size="sm"
+            >
+              Delete Budget
             </Button>
             <ViewExpenses
               show={showExpenses}

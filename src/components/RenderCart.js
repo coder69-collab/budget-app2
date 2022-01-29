@@ -10,9 +10,8 @@ export default function RenderCart() {
   return (
     <>
       {state.map((cart) => (
-        <Col>
+        <Col key={cart.id}>
           <Cart
-            key={cart.id}
             name={cart.name}
             maximumSpending={cart.maximumSpending}
             currentSpending={cart.currentSpending}
